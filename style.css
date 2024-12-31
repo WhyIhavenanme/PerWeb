@@ -1,4 +1,5 @@
 <style>
+        
         @font-face {
             font-family: 'Playwrite AU SA Regular';
             src: url('fonts/Playwrite AU SA/PlaywriteAUSA-Regular.ttf') format('truetype');
@@ -47,6 +48,7 @@
         }
         /* 中等大小正文样式 */
         .typing-body-mid {
+            font-family: 'Playwrite AU SA Regular', monospace;
             font-size: 1em; /* 设置正文字体大小 */
             color: gray; /* 设置正文颜色为灰色 */
         }
@@ -58,5 +60,16 @@
         /* 逐字打印效果初始样式 */
         [data-printonebyone="true"] {
             visibility: hidden; /* 初始隐藏需要逐字打印的元素 */
+        }
+        .surface {
+            position: relative;
+            border-radius: 16px;
+            height: 64px;
+            width: 64px;
+        }
+    
+        :root {
+          --md-elevation-level: 5;
+          --md-sys-color-shadow: #006A6A;
         }
     </style>

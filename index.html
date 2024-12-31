@@ -6,6 +6,8 @@
     <title>Sprout's Website</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicion.ico" type="image/x-icon" sizes="256x256">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="module" src="https://unpkg.com/@material/mwc-button@0.25.3/mwc-button.js"></script>
 </head>
 <body>
     <!-- 网站内容 -->
@@ -16,7 +18,7 @@
     <div class="typing typing-body-mid" data-printonebyone="true" data-iinterval="25">Here's a place to share my thoughts and ideas with the world.</div>
     <div class="typing typing-body-mid" data-printonebyone="true" data-iinterval="25">Do you know why this website is called 'sprotistuffy'?</div>
     <div class="typing typing-body-mid" data-printonebyone="true" data-iinterval="25">Because my previous name was Luffy, but now my name is Sprout</div>
-
+    <div class="surface">
     <script>
         /**
          * 为指定元素添加打字效果
@@ -25,33 +27,35 @@
          */
         function typeText(element) {
             return new Promise((resolve) => {
-                const text = element.textContent; // 获取元素的文本内容
-                const printonebyone = element.dataset.printonebyone === 'true'; // 检查是否需要逐字打印
-                const iInterval = parseInt(element.dataset.iinterval) || 100; // 获取打字间隔，默认为100ms
+                const text = element.textContent;
+                const printonebyone = element.dataset.printonebyone === 'true';
+                const iInterval = parseInt(element.dataset.iinterval) || 100;
 
-                if (printonebyone) {
-                    element.textContent = ''; // 清空元素内容
-                    element.style.visibility = 'visible'; // 使元素可见
-                    let index = 0; // 当前打字的字符索引
+                if (!printonebyone) {
+                    resolve();
+                    return;
+                }
 
-                    function addLetter() {
-                        if (index < text.length) {
-                            const span = document.createElement('span'); // 创建新的span元素
-                            span.textContent = text[index]; // 设置span的文本为当前字符
-                            span.className = 'fade-in'; // 添加淡入效果类
-                            element.appendChild(span); // 将span添加到元素中
-                            setTimeout(() => span.style.opacity = '1', iInterval); // 延迟50ms后使字符可见
-                            index++; // 移动到下一个字符
-                            setTimeout(addLetter, iInterval); // 设置下一个字符的打字延迟
-                        } else {
-                            resolve(); // 打字效果完成，解决Promise
-                        }
+                element.textContent = '';
+                element.style.visibility = 'visible';
+                let index = 0;
+
+                function addLetter() {
+                    if (index >= text.length) {
+                        resolve();
+                        return;
                     }
 
-                    addLetter(); // 开始打字效果
-                } else {
-                    resolve(); // 如果不需要逐字打印，直接解决Promise
+                    const span = document.createElement('span');
+                    span.textContent = text[index];
+                    span.className = 'fade-in';
+                    element.appendChild(span);
+                    setTimeout(() => span.style.opacity = '1', iInterval);
+                    index++;
+                    setTimeout(addLetter, iInterval);
                 }
+
+                addLetter();
             });
         }
 
