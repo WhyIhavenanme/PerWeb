@@ -1,5 +1,4 @@
 <style>
-        
         @font-face {
             font-family: 'Playwrite AU SA Regular';
             src: url('fonts/Playwrite AU SA/PlaywriteAUSA-Regular.ttf') format('truetype');
@@ -15,6 +14,24 @@
         @font-face {
             font-family: 'Playwrite AU SA Light';
             src: url('fonts/Playwrite AU SA/PlaywriteAUSA-Light.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Playwrite GB S Regular';
+            src: url('fonts/Playwrite GB S/PlaywriteGBS-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Playwrite GB S Thin';
+            src: url('fonts/Playwrite GB S/PlaywriteGBS-Thin.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Playwrite GB S Light';
+            src: url('fonts/Playwrite GB S/PlaywriteGBS-Light.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -42,13 +59,13 @@
         }
         /* 大标题样式 */
         .typing-tittle-large {
-            font-family: 'Playwrite AU SA Regular', monospace;
+            font-family: 'Playwrite AU SA Light', monospace;
             font-size: 3em; /* 设置大标题字体大小 */
             color: blue; /* 设置大标题颜色为蓝色 */
         }
         /* 中等大小正文样式 */
         .typing-body-mid {
-            font-family: 'Playwrite AU SA Regular', monospace;
+            font-family: 'Playwrite GB S Light', monospace;
             font-size: 1em; /* 设置正文字体大小 */
             color: gray; /* 设置正文颜色为灰色 */
         }
