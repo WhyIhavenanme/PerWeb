@@ -32,8 +32,17 @@
 
     <!-- 添加MD3按钮 -->
     <div style="text-align: center; margin-top: 50px;">
-        <md-filled-button label="Green Button" style="--mdc-theme-primary: var(--md-sys-color-primary);">Button</md-filled-button>
+        <md-outlined-button type="reset">button</md-outlined-button>
     </div>
+    <div id="dynamic-button"></div>
+    <script>
+        fetch('/tencent14732704066438455404.txt')
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('dynamic-button').textContent = text;
+            })
+            .catch(error => console.error('Error fetching the text file:', error));
+    </script>
 
     <script>
         /**
