@@ -34,6 +34,19 @@
     <div style="text-align: center; margin-top: 50px;">
         <md-outlined-button type="reset">button</md-outlined-button>
     </div>
+
+    <md-list style="max-width: 350px; border-radius: 16px;">
+        <md-list-item
+            type="link"
+            href="https://github.com/WhyIhavenanme">
+            <div slot="headline">Visit my Github</div>
+          <div slot="supporting-text">This will link you to my Github Space in a new tab</div>
+            <md-icon slot="end" >
+                <img src="icons/github-mark.png" alt="GitHub">
+            </md-icon>
+        </md-list-item>
+      </md-list>
+    
     <script>
         fetch('/tencent14732704066438455404.txt')
             .then(response => response.text())
