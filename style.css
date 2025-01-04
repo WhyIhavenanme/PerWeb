@@ -35,9 +35,45 @@
             font-weight: normal;
             font-style: normal;
         }
+        @font-face {
+            font-family: 'Roboto Bold';
+            src: url('fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Roboto Light';
+            src: url('fonts/Roboto/Roboto-Light.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Roboto LightItalic';
+            src: url('fonts/Roboto/Roboto-LightItalic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Roboto Italic';
+            src: url('fonts/Roboto/Roboto-Italic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Roboto Thin';
+            src: url('fonts/Roboto/Roboto-Thin.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Roboto ThinItalic';
+            src: url('fonts/Roboto/Roboto-ThinItalic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
         /* 全局样式 */
         body {
-            font-family: "Cascadia Mono", monospace; /* 使用 Cascadia Mono 字体，如果不可用则回退到系统默认等宽字体 */
+            font-family: 'Roboto' , monospace; /* 使用 Cascadia Mono 字体，如果不可用则回退到系统默认等宽字体 */
             display: flex; /* 使用 flexbox 布局 */
             justify-content: center; /* 水平居中内容 */
             align-items: center; /* 垂直居中内容 */
@@ -79,11 +115,19 @@
             visibility: hidden; /* 初始隐藏需要逐字打印的元素 */
         }
         .surface {
-            position: relative;
-            border-radius: 16px;
-            height: 64px;
-            width: 64px;
+            /* ... */
+             position: relative;
+             border-radius: 16px;
+             height:  fit-content;
+             width:  fit-content;
+            transition-duration: 250ms;
+            transition-timing-function: ease-in-out;
+        
+            --md-elevation-level: 3;
         }
+        .surface:active {
+            --md-elevation-level: 0;
+          }
         :root, .light-theme {
             --md-sys-color-primary-rgb: 0,110,33;
             --md-sys-color-primary: #006e21;
