@@ -71,12 +71,12 @@
         // 初始应用主题
         applyTheme();
 
-        // 监听系统颜色模式变化
+        // 监听系统颜色模式变化`
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
 
         // 切换图标
         function updateIcon() {
-            if (themeToggleButton.value === '1') {
+            if (themeToggleButton.hasAttribute('selected')) {
                 githubIcon.src = 'icons/github-mark.png';
             } else {
                 githubIcon.src = 'icons/github-mark-white.png';
