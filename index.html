@@ -35,7 +35,7 @@
         <md-outlined-button type="reset">button</md-outlined-button>
     </div>
 
-    <md-list style="max-width: 350px; border-radius: 16px;">
+    <md-list style="max-width: 350px; border-radius: 16px;" id="theme-toggle">
         <md-list-item
             type="link"
             href="https://github.com/WhyIhavenanme">
@@ -45,7 +45,54 @@
                 <img src="icons/github-mark.png" alt="GitHub">
             </md-icon>
         </md-list-item>
-      </md-list>
+    </md-list>
+
+    <label for="switch" style="display: flex; align-items: center; gap: 10px;">
+        <div class="sp-body">Dark mode?</div>
+        <md-switch id="theme-toggle-button" selected></md-switch>    
+    </label>
+
+    <script>
+        // 检测系统颜色模式并应用相应的主题
+        function applyTheme() {
+            const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark-theme');
+                document.documentElement.classList.remove('light-theme');
+            } else {
+                document.documentElement.classList.add('light-theme');
+                document.documentElement.classList.remove('dark-theme');
+            }
+        }
+
+        // 初始应用主题
+        applyTheme();
+
+        // 监听系统颜色模式变化
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
+
+        // 切换主题
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark-theme')) {
+                document.documentElement.classList.remove('dark-theme');
+                document.documentElement.classList.add('light-theme');
+            } else {
+                document.documentElement.classList.remove('light-theme');
+                document.documentElement.classList.add('dark-theme');
+            }
+        });
+
+        // 为 <md-outlined-button> 添加相同的切换主题功能
+        document.getElementById('theme-toggle-button').addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark-theme')) {
+                document.documentElement.classList.remove('dark-theme');
+                document.documentElement.classList.add('light-theme');
+            } else {
+                document.documentElement.classList.remove('light-theme');
+                document.documentElement.classList.add('dark-theme');
+            }
+        });
+    </script>
     
     <script>
         fetch('/tencent14732704066438455404.txt')

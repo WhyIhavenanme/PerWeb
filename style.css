@@ -105,6 +105,11 @@
             font-size: 1em; /* 设置正文字体大小 */
             color: var(--md-sys-color-on-background); /* 设置正文颜色为灰色 */
         }
+        .sp-body{
+            font-family: 'Roboto', monospace;
+            font-size: 1em; /* 设置正文字体大小 */
+            color: var(--md-sys-color-on-background); /* 设置正文颜色为灰色 */
+        }
         /* 淡入效果样式 */
         .fade-in {
             opacity: 0; /* 初始设置为完全透明 */
