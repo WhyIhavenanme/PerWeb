@@ -55,17 +55,15 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const themeToggleButton = document.getElementById('theme-toggle-button');
-            const githubIcon = document.getElementById('theme-toggle-button');
+            const githubIcon = document.getElementById('github-icon');
 
             // 检测系统颜色模式并应用相应的主题
             function applyTheme() {
                 const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 if (isDarkMode) {
-                    githubIcon.src = 'icons/github-mark-white.png';
                     document.documentElement.classList.add('dark-theme');
                     document.documentElement.classList.remove('light-theme');
                 } else {
-                    githubIcon.src = 'icons/github-mark-white.png';
                     document.documentElement.classList.add('light-theme');
                     document.documentElement.classList.remove('dark-theme');
                 }
