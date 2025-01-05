@@ -40,9 +40,9 @@
             type="link"
             href="https://github.com/WhyIhavenanme">
             <div slot="headline">Visit my Github</div>
-          <div slot="supporting-text">This will link you to my Github Space in a new tab</div>
-            <md-icon slot="end" >
-                <img src="icons/github-mark.png" alt="GitHub">
+            <div slot="supporting-text">This will link you to my Github Space in a new tab</div>
+            <md-icon slot="end">
+                <img id="github-icon" src="icons/github-mark.png" alt="GitHub">
             </md-icon>
         </md-list-item>
     </md-list>
@@ -51,8 +51,11 @@
         <div class="sp-body">Dark mode?</div>
         <md-switch id="theme-toggle-button" selected></md-switch>    
     </label>
-
+    
     <script>
+        const themeToggleButton = document.getElementById('theme-toggle-button');
+        const githubIcon = document.getElementById('github-icon');
+
         // 检测系统颜色模式并应用相应的主题
         function applyTheme() {
             const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -71,19 +74,20 @@
         // 监听系统颜色模式变化
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
 
-        // 切换主题
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark-theme')) {
-                document.documentElement.classList.remove('dark-theme');
-                document.documentElement.classList.add('light-theme');
+        // 切换图标
+        function updateIcon() {
+            if (themeToggleButton.value === '1') {
+                githubIcon.src = 'icons/github-mark.png';
             } else {
-                document.documentElement.classList.remove('light-theme');
-                document.documentElement.classList.add('dark-theme');
+                githubIcon.src = 'icons/github-mark-light.png';
             }
-        });
+        }
 
-        // 为 <md-outlined-button> 添加相同的切换主题功能
-        document.getElementById('theme-toggle-button').addEventListener('click', () => {
+        // 初始设置图标
+        updateIcon();
+
+        // 监听主题切换按钮的变化
+        themeToggleButton.addEventListener('click', () => {
             if (document.documentElement.classList.contains('dark-theme')) {
                 document.documentElement.classList.remove('dark-theme');
                 document.documentElement.classList.add('light-theme');
@@ -91,6 +95,7 @@
                 document.documentElement.classList.remove('light-theme');
                 document.documentElement.classList.add('dark-theme');
             }
+            updateIcon();
         });
     </script>
     
