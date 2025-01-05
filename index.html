@@ -42,7 +42,7 @@
             <div slot="headline">Visit my Github</div>
             <div slot="supporting-text">This will link you to my Github Space in a new tab</div>
             <md-icon slot="end">
-                <img id="github-icon" src="icons/github-mark.png" alt="GitHub">
+                <img id="github-icon" alt="GitHub">
             </md-icon>
         </md-list-item>
     </md-list>
@@ -53,49 +53,51 @@
     </label>
     
     <script>
-        const themeToggleButton = document.getElementById('theme-toggle-button');
-        const githubIcon = document.getElementById('github-icon');
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const githubIcon = document.getElementById('github-icon');
 
-        // 检测系统颜色模式并应用相应的主题
-        function applyTheme() {
-            const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (isDarkMode) {
-                document.documentElement.classList.add('dark-theme');
-                document.documentElement.classList.remove('light-theme');
-            } else {
-                document.documentElement.classList.add('light-theme');
-                document.documentElement.classList.remove('dark-theme');
+            // 检测系统颜色模式并应用相应的主题
+            function applyTheme() {
+                const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (isDarkMode) {
+                    document.documentElement.classList.add('dark-theme');
+                    document.documentElement.classList.remove('light-theme');
+                } else {
+                    document.documentElement.classList.add('light-theme');
+                    document.documentElement.classList.remove('dark-theme');
+                }
             }
-        }
 
-        // 初始应用主题
-        applyTheme();
+            // 初始应用主题
+            applyTheme();
 
-        // 监听系统颜色模式变化`
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
+            // 监听系统颜色模式变化
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
 
-        // 切换图标
-        function updateIcon() {
-            if (themeToggleButton.hasAttribute('selected')) {
-                githubIcon.src = 'icons/github-mark.png';
-            } else {
-                githubIcon.src = 'icons/github-mark-white.png';
+            // 切换图标
+            function updateIcon() {
+                if (themeToggleButton.hasAttribute('selected')) {
+                    githubIcon.src = 'icons/github-mark.png';
+                } else {
+                    githubIcon.src = 'icons/github-mark-white.png';
+                }
             }
-        }
 
-        // 初始设置图标
-        updateIcon();
-
-        // 监听主题切换按钮的变化
-        themeToggleButton.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark-theme')) {
-                document.documentElement.classList.remove('dark-theme');
-                document.documentElement.classList.add('light-theme');
-            } else {
-                document.documentElement.classList.remove('light-theme');
-                document.documentElement.classList.add('dark-theme');
-            }
+            // 初始设置图标
             updateIcon();
+
+            // 监听主题切换按钮的变化
+            themeToggleButton.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark-theme')) {
+                    document.documentElement.classList.remove('dark-theme');
+                    document.documentElement.classList.add('light-theme');
+                } else {
+                    document.documentElement.classList.remove('light-theme');
+                    document.documentElement.classList.add('dark-theme');
+                }
+                updateIcon();
+            });
         });
     </script>
     
