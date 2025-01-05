@@ -61,9 +61,11 @@
             function applyTheme() {
                 const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 if (isDarkMode) {
+                    githubIcon.src = 'icons/github-mark.png';
                     document.documentElement.classList.add('dark-theme');
                     document.documentElement.classList.remove('light-theme');
                 } else {
+                    githubIcon.src = 'icons/github-mark-white.png';
                     document.documentElement.classList.add('light-theme');
                     document.documentElement.classList.remove('dark-theme');
                 }
@@ -74,19 +76,6 @@
 
             // 监听系统颜色模式变化
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
-
-            // 切换图标
-            function updateIcon() {
-                if (themeToggleButton.hasAttribute('selected')) {
-                    githubIcon.src = 'icons/github-mark.png';
-                } else {
-                    githubIcon.src = 'icons/github-mark-white.png';
-                }
-            }
-
-            // 初始设置图标
-            updateIcon();
-
             // 监听主题切换按钮的变化
             themeToggleButton.addEventListener('click', () => {
                 if (document.documentElement.classList.contains('dark-theme')) {
