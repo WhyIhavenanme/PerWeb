@@ -35,6 +35,7 @@
         <md-outlined-button type="reset">button</md-outlined-button>
     </div>
 
+    <!---- 添加MD3列表 ---->
     <md-list style="max-width: 350px; border-radius: 16px;" id="theme-toggle">
         <md-list-item
             type="link"
@@ -47,13 +48,16 @@
         </md-list-item>
     </md-list>
 
+    <!-- 添加切换主题按钮 -->
     <label for="switch" style="display: flex; align-items: center; gap: 10px;">
         <div class="sp-body">Dark mode?</div>
         <md-switch id="theme-toggle-button" selected></md-switch>    
     </label>
     
     <script>
+        // 当DOM内容加载完成后，开始执行脚本
         document.addEventListener('DOMContentLoaded', () => {
+            // 获取元素
             const themeToggleButton = document.getElementById('theme-toggle-button');
             const githubIcon = document.getElementById('github-icon');
 
