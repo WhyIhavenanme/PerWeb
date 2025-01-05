@@ -1,0 +1,15 @@
+{
+  "name": "perweb",
+  "version": "1.0.0",
+  "description": "目前自我感觉良好",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material/web": "^2.2.0"
+  }
+}
