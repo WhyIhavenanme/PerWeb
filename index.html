@@ -51,7 +51,7 @@
     <!-- 添加切换主题按钮 -->
     <label for="switch" style="display: flex; align-items: center; gap: 10px;">
         <div class="sp-body">Dark mode?</div>
-        <md-switch id="theme-toggle-button" selected></md-switch>    
+        <md-switch id="theme-toggle-button"></md-switch>    
     </label>
     
     <script>
@@ -63,7 +63,7 @@
 
             // 检测系统颜色模式并应用相应的主题
             function applyTheme() {
-                const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const isDarkMode = window.matchMedia('(prefers-color-scheme: light)').matches;
                 if (isDarkMode) {
                     document.documentElement.classList.add('dark-theme');
                     document.documentElement.classList.remove('light-theme');
