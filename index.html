@@ -81,9 +81,6 @@
             // 初始应用主题
             applyTheme();
 
-            // 监听系统颜色模式变化
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
-
             // 切换图标
             function updateIcon() {
                 if (document.documentElement.classList.contains('dark-theme')) {
@@ -110,6 +107,7 @@
         });
     </script>
 
+    <!-- TODO: typing one-by-one -->
     <script>
         /**
          * 为指定元素添加打字效果
