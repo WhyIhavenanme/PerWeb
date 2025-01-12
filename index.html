@@ -20,7 +20,7 @@
         document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
     </script>
 </head>
-<body>
+<body class="light-theme">
     <!-- 网站内容 -->
     <div class="typing typing-tittle-small">Welcome to</div>
     <div class="typing typing-tittle-large">Sprout's</div>
@@ -64,33 +64,23 @@
             const themeToggleButton = document.getElementById('theme-toggle-button');
             const githubIcon = document.getElementById('github-icon');
 
-            // 检测系统颜色模式并应用相应的主题
-            function applyTheme() {
-                const isDarkMode = window.matchMedia('(prefers-color-scheme: light)').matches;
+            // 应用主题
+            function applyTheme(isDarkMode) {
                 if (isDarkMode) {
                     document.documentElement.classList.add('dark-theme');
                     document.documentElement.classList.remove('light-theme');
+                    githubIcon.src = 'icons/github-mark-white.png'; // 设置为白色图标
                 } else {
                     document.documentElement.classList.add('light-theme');
                     document.documentElement.classList.remove('dark-theme');
+                    githubIcon.src = 'icons/github-mark.png'; // 设置为默认图标
                 }
             }
 
-            // 初始应用主题
-            applyTheme();
-
             // 监听主题切换按钮的变化
-            themeToggleButton.addEventListener('click', () => {
-                if (document.documentElement.classList.contains('dark-theme')) {
-                    document.documentElement.classList.remove('dark-theme');
-                    document.documentElement.classList.add('light-theme');
-                    githubIcon.src = 'icons/github-mark-white.png';
-                } else {
-                    document.documentElement.classList.remove('light-theme');
-                    document.documentElement.classList.add('dark-theme');
-                    githubIcon.src = 'icons/github-mark.png';
-                }
-                updateIcon();
+            themeToggleButton.addEventListener('change', () => {
+                const isDarkMode = themeToggleButton.selected;
+                applyTheme(isDarkMode);
             });
         });
     </script>
