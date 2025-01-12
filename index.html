@@ -81,26 +81,16 @@
             // 初始应用主题
             applyTheme();
 
-            // 切换图标
-            function updateIcon() {
-                if (document.documentElement.classList.contains('dark-theme')) {
-                    githubIcon.src = 'icons/github-mark-white.png';
-                } else {
-                    githubIcon.src = 'icons/github-mark.png';
-                }
-            }
-
-            // 初始设置图标
-            updateIcon();
-
             // 监听主题切换按钮的变化
             themeToggleButton.addEventListener('click', () => {
                 if (document.documentElement.classList.contains('dark-theme')) {
                     document.documentElement.classList.remove('dark-theme');
                     document.documentElement.classList.add('light-theme');
+                    githubIcon.src = 'icons/github-mark-white.png';
                 } else {
                     document.documentElement.classList.remove('light-theme');
                     document.documentElement.classList.add('dark-theme');
+                    githubIcon.src = 'icons/github-mark.png';
                 }
                 updateIcon();
             });
