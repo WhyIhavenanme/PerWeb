@@ -19,6 +19,7 @@
     
         document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <!-- 网站内容 -->
@@ -64,8 +65,7 @@
             // 获取元素
             const themeToggleButton = document.getElementById('theme-toggle-button');
             const githubIcon = document.getElementById('github-icon');
-            const fireworksButton = document.getElementById('fireworks-button');
-            
+
             // 检测系统颜色模式并应用相应的主题
             function applyTheme() {
                 const isDarkMode = window.matchMedia('(prefers-color-scheme: light)').matches;
@@ -110,15 +110,23 @@
                 updateIcon();
             });
         });
+    </script>
 
-        // 监听烟花按钮的点击事件
-        fireworksButton.addEventListener('click', () => {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
+    <!--烟花效果-->
+    <script type="module">
+        import confetti from 'canvas-confetti';
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const fireworksButton = document.getElementById('fireworks-button');
+            
+            if (fireworksButton) {
+                fireworksButton.addEventListener('click', () => {
+                    confetti();
                 });
-            });
+            } else {
+                console.error('fireworks-button not found');
+            }
+        });
     </script>
     
     <script>
