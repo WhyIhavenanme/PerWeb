@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@material/web": "^2.2.0",
-    "canvas-confetti": "^1.9.3"
+    "@material/web": "^2.2.0"
   }
 }
