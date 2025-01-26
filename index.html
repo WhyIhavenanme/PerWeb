@@ -40,6 +40,7 @@
         <p class="sp-body">Click the button below to celebrate with me.🥰</p>
         <md-outlined-button type="reset" id="fireworks-button">✨Celebrate🎉</md-outlined-button>
     </div>
+    <script src="firework.js"></script>
 
     <!---- 添加MD3列表 ---->
     <md-list style="max-width: 350px; border-radius: 16px;" id="theme-toggle">
@@ -59,154 +60,8 @@
         <div class="sp-body">Dark mode?</div>
         <md-switch id="theme-toggle-button"></md-switch>    
     </label>
+    <script src="themetoggle.js"></script>
     
-    <!--切换主题-->
-    <script>
-        // 当DOM内容加载完成后，开始执行脚本
-        document.addEventListener('DOMContentLoaded', () => {
-            // 获取元素
-            const themeToggleButton = document.getElementById('theme-toggle-button');
-            const githubIcon = document.getElementById('github-icon');
-
-            // 检测系统颜色模式并应用相应的主题
-            function applyTheme() {
-                const isDarkMode = window.matchMedia('(prefers-color-scheme: light)').matches;
-                if (isDarkMode) {
-                    document.documentElement.classList.add('dark-theme');
-                    document.documentElement.classList.remove('light-theme');
-                    githubIcon.src = 'icons/github-mark-white.png'; // 设置为白色图标
-                } else {
-                    document.documentElement.classList.add('light-theme');
-                    document.documentElement.classList.remove('dark-theme');
-                    githubIcon.src = 'icons/github-mark.png'; // 设置为默认图标
-                }
-            }
-
-            // 初始应用主题
-            applyTheme();
-
-            // 监听系统颜色模式变化
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
-
-            // 切换图标
-            function updateIcon() {
-                if (document.documentElement.classList.contains('dark-theme')) {
-                    githubIcon.src = 'icons/github-mark-white.png';
-                } else {
-                    githubIcon.src = 'icons/github-mark.png';
-                }
-            }
-
-            // 初始设置图标
-            updateIcon();
-
-            // 监听主题切换按钮的变化
-            themeToggleButton.addEventListener('click', () => {
-                if (document.documentElement.classList.contains('dark-theme')) {
-                    document.documentElement.classList.remove('dark-theme');
-                    document.documentElement.classList.add('light-theme');
-                } else {
-                    document.documentElement.classList.remove('light-theme');
-                    document.documentElement.classList.add('dark-theme');
-                }
-                updateIcon();
-            });
-        });
-    </script>
-
-    <script>
-        // 当DOM内容加载完成后，开始执行脚本
-        document.addEventListener('DOMContentLoaded', () => {
-            // 获取元素
-            const fireworksButton = document.getElementById('fireworks-button');
-
-            // 监听按钮点击事件
-            fireworksButton.addEventListener('click', () => {
-                // 创建一个烟花效果
-                const duration = 1 * 1000;
-                const animationEnd = Date.now() + duration;
-                const defaults = { startVelocity: 15, spread: 360, ticks: 120, zIndex: 0 };
-
-                function randomInRange(min, max) {
-                    return Math.random() * (max - min) + min;
-                }
-
-                const interval = setInterval(() => {
-                    const timeLeft = animationEnd - Date.now();
-
-                    if (timeLeft <= 0) {
-                        return clearInterval(interval);
-                    }
-
-                    const particleCount = 50 * (timeLeft / duration);
-                    // since particles fall down, start a bit higher than random
-                    confetti({
-                        ...defaults,
-                        particleCount,
-                        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-                    });
-                    confetti({
-                        ...defaults,
-                        particleCount,
-                        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-                    });
-                }, 150);
-            });
-        });
-    </script>
-    
-    <script>
-        /**
-         * 为指定元素添加打字效果
-         * @param {HTMLElement} element - 需要添加打字效果的元素
-         * @returns {Promise} - 返回一个Promise，在打字效果完成时解决
-         */
-        function typeText(element) {
-            return new Promise((resolve) => {
-                const text = element.textContent;
-                const printonebyone = element.dataset.printonebyone === 'true';
-                const iInterval = parseInt(element.dataset.iinterval) || 100;
-
-                if (!printonebyone) {
-                    resolve();
-                    return;
-                }
-
-                element.textContent = '';
-                element.style.visibility = 'visible';
-                let index = 0;
-
-                function addLetter() {
-                    if (index >= text.length) {
-                        resolve();
-                        return;
-                    }
-
-                    const span = document.createElement('span');
-                    span.textContent = text[index];
-                    span.className = 'fade-in';
-                    element.appendChild(span);
-                    setTimeout(() => span.style.opacity = '1', iInterval);
-                    index++;
-                    setTimeout(addLetter, iInterval);
-                }
-
-                addLetter();
-            });
-        }
-
-        /**
-         * 为所有具有.typing类的元素添加打字效果
-         */
-        async function typeAllText() {
-            const typingElements = document.querySelectorAll('.typing'); // 获取所有.typing元素
-            for (const element of typingElements) {
-                await typeText(element); // 为每个元素添加打字效果，并等待完成
-            }
-        }
-
-        // 当DOM内容加载完成后，开始执行打字效果
-        document.addEventListener('DOMContentLoaded', typeAllText);
-    </script>
+    <script src="typing.js"></script>
 </body>
 </html>
