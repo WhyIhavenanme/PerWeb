@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 获取元素
     const themeToggleButton = document.getElementById('theme-toggle-button');
     const githubIcon = document.getElementById('github-icon');
-
+    const themeChIcon = document.getElementById('theme_ch');
     //初始化主题
     document.documentElement.classList.remove('light-theme');
     document.documentElement.classList.remove('dark-theme');
@@ -15,10 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.classList.add('dark-theme');
             document.documentElement.classList.remove('light-theme');
             githubIcon.src = 'icons/github-mark-white.png'; // 设置为白色图标
+            themeChIcon.src = 'icons/button_icon_lightmode.png'; // 设置为lightmode图标
         } else {
             document.documentElement.classList.add('light-theme');
             document.documentElement.classList.remove('dark-theme');
             githubIcon.src = 'icons/github-mark.png'; // 设置为默认图标
+            themeChIcon.src = 'icons/button_icon_darkmode.png'; // 设置为darkmode图标
         }
     }
 
@@ -29,8 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateIcon() {
         if (document.documentElement.classList.contains('dark-theme')) {
             githubIcon.src = 'icons/github-mark-white.png';
+            themeChIcon.src = 'icons/button_icon_lightmode.png';
         } else {
             githubIcon.src = 'icons/github-mark.png';
+            themeChIcon.src = 'icons/button_icon_darkmode.png';
         }
     }
 

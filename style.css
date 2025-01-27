@@ -71,6 +71,9 @@
     .surface:active {
         --md-elevation-level: 0;
     }
+    md-outlined-select.lastlist {
+        width: 10px;
+    }
     :root, .light-theme {
         --md-sys-color-primary-rgb: 0, 110, 33;
         --md-sys-color-primary: #006e21;
