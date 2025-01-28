@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.classList.remove('dark-theme');
     document.documentElement.classList.add('light-theme');
 
-    // 应用主题
+    // 应用主题1
     function applyTheme(isDarkMode) {
         if (isDarkMode) {
             document.documentElement.classList.add('dark-theme');
