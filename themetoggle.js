@@ -1,7 +1,6 @@
 // 当DOM内容加载完成后，开始执行脚本
 document.addEventListener('DOMContentLoaded', () => {
     // 获取元素
-    const themeToggleButton = document.getElementById('theme-toggle-button');
     const githubIcon = document.getElementById('github-icon');
     const themeChIcon = document.getElementById('theme_ch');
     //初始化主题
@@ -42,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateIcon();
 
     // 监听主题切换按钮的变化
-    themeToggleButton.addEventListener('click', () => {
+    themeChIcon.addEventListener('click', () => {
         if (document.documentElement.classList.contains('dark-theme')) {
             document.documentElement.classList.remove('dark-theme');
             document.documentElement.classList.add('light-theme');
