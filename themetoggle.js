@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 初始设置图标
     updateIcon();
 
-    // 监听主题切换按钮的变化
+    // 监听主题切换按钮的变化k
     themeToggleButton.addEventListener('click', () => {
         if (document.documentElement.classList.contains('dark-theme')) {
             document.documentElement.classList.remove('dark-theme');
