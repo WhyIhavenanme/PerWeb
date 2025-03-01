@@ -5,12 +5,14 @@
     @font-face { font-family: 'Playwrite GB S Regular'; src: url('fonts/Playwrite GB S/PlaywriteGBS-Regular.ttf') format('truetype'); font-weight: normal; font-style: normal; }
     @font-face { font-family: 'Playwrite GB S Thin'; src: url('fonts/Playwrite GB S/PlaywriteGBS-Thin.ttf') format('truetype'); font-weight: normal; font-style: normal; }
     @font-face { font-family: 'Playwrite GB S Light'; src: url('fonts/Playwrite GB S/PlaywriteGBS-Light.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+    @font-face { font-family: 'Roboto'; src: url('fonts/Roboto/Roboto-Regular.ttf') format('truetype'); font-weight: normal; font-style: normal; }
     @font-face { font-family: 'Roboto Bold'; src: url('fonts/Roboto/Roboto-Bold.ttf') format('truetype'); font-weight: normal; font-style: normal; }
     @font-face { font-family: 'Roboto Light'; src: url('fonts/Roboto/Roboto-Light.ttf') format('truetype'); font-weight: normal; font-style: normal; }
     @font-face { font-family: 'Roboto LightItalic'; src: url('fonts/Roboto/Roboto-LightItalic.ttf') format('truetype'); font-weight: normal; font-style: normal; }
     @font-face { font-family: 'Roboto Medium';src: url('fonts/Roboto/Roboto-Medium.ttf') format('truetype'); font-weight: normal; font-style: normal;}
     @font-face { font-family: 'Roboto Thin'; src: url('fonts/Roboto/Roboto-Thin.ttf') format('truetype'); font-weight: normal; font-style: normal; }
     @font-face { font-family: 'Roboto ThinItalic'; src: url('fonts/Roboto/Roboto-ThinItalic.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+
     /* 全局样式 */
     body {
         font-family: 'Roboto', monospace; /* 使用 Cascadia Mono 字体，如果不可用则回退到系统默认等宽字体 */
@@ -46,7 +48,7 @@
         color: var(--md-sys-color-on-background); /* 设置正文颜色为灰色 */
     }
     .sp-body {
-        font-family: 'Roboto Bold'
+        font-family: 'Roboto';
         font-size: 1em; /* 设置正文字体大小 */
         color: var(--md-sys-color-on-background); /* 设置正文颜色为灰色 */
     }
