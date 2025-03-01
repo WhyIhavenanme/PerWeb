@@ -1,9 +1,9 @@
 // 当DOM内容加载完成后，开始执行脚本
 document.addEventListener('DOMContentLoaded', () => {
     // 获取元素
-    const themeToggleButton = document.getElementById('theme-toggle-button');
+    const themeToggleButton = document.getElementById('theme-little-button');
     const githubIcon = document.getElementById('github-icon');
-    const themeChIcon = document.getElementById('theme_ch');
+    const themeChIcon = document.getElementById('theme-change-icon');
     //初始化主题
     document.documentElement.classList.remove('light-theme');
     document.documentElement.classList.remove('dark-theme');
