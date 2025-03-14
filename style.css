@@ -25,6 +25,12 @@
         margin: 0; /* 移除默认外边距 */
         padding: 0; /* 移除默认内边距 */
     }
+    .centered-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
     /* 打字效果容器样式 */
     .typing {
         text-align: center; /* 文本居中对齐 */
