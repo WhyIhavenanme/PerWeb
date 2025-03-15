@@ -1,0 +1,44 @@
+name: Update Blog Files JSON
+
+on:
+  push:
+    paths:
+      - 'blog/**'  # 当 blog 目录有变化时触发
+  workflow_dispatch:  # 允许手动触发
+  schedule:
+    - cron: '0 0 * * *'  # 每天 UTC 时间 00:00 运行一次
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Generate blog-files.json
+        run: |
+          # 列出 blog 目录中的所有文件并创建 JSON 数组
+          cd blog
+          echo "[" > ../blog-files.json
+          first=true
+          for file in $(find . -type f -not -path "*/\.*" | sort); do
+            file=${file#./}  # 删除开头的 ./
+            if [ -n "$file" ]; then
+              if [ "$first" = true ]; then
+                first=false
+              else
+                echo "," >> ../blog-files.json
+              fi
+              echo "  \"$file\"" >> ../blog-files.json
+            fi
+          done
+          echo "]" >> ../blog-files.json
+          cd ..
+          cat blog-files.json  # 显示生成的文件内容
+      
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add blog-files.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update blog-files.json" && git push)
