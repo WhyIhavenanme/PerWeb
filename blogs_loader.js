@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('files.json')
+    fetch('blog-files.json')
         .then(response => response.json())
         .then(files => {
             const fileList = document.getElementById('files');
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 listItem.classList.add('centered-item');
 
                 const headline = document.createElement('div');
-                headline.setAttribute('slot', 'headline');
+                headline.setAttribute('slot', 'headline');  
                 headline.textContent = file;
 
                 listItem.appendChild(headline);
