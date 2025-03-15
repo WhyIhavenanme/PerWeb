@@ -19,19 +19,25 @@ jobs:
         run: |
           # 列出 blog 目录中的所有文件并创建 JSON 数组
           cd blog
+          
+          # 获取所有文件并保存到数组中
+          files=($(find . -type f -not -path "*/\.*" | sort))
+          total_files=${#files[@]}
+          
           echo "[" > ../blog-files.json
-          first=true
-          for file in $(find . -type f -not -path "*/\.*" | sort); do
-            file=${file#./}  # 删除开头的 ./
+          
+          for (( i=0; i<$total_files; i++ )); do
+            file=${files[$i]#./}  # 删除开头的 ./
             if [ -n "$file" ]; then
-              if [ "$first" = true ]; then
-                first=false
+              # 如果是最后一个文件，不添加逗号
+              if [ $i -eq $((total_files-1)) ]; then
+                echo "  \"$file\"" >> ../blog-files.json
               else
-                echo "," >> ../blog-files.json
+                echo "  \"$file\"," >> ../blog-files.json
               fi
-              echo "  \"$file\"" >> ../blog-files.json
             fi
           done
+          
           echo "]" >> ../blog-files.json
           cd ..
           cat blog-files.json  # 显示生成的文件内容
