@@ -3,10 +3,10 @@ name: Update Blog Files and Convert to HTML
 on:
   push:
     paths:
-      - 'blog_original/**'  # 当 blog_original 目录有变化时触发
-  workflow_dispatch:  # 允许手动触发
+      - 'blog_original/**'
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # 每天 UTC 时间 00:00 运行一次
+    - cron: '0 0 * * *'
 
 jobs:
   update-json-and-convert:
@@ -15,8 +15,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       
-      - name: Install pandoc
-        run: sudo apt-get install -y pandoc
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      
+      - name: Install markdown-it
+        run: npm install -g markdown-it
       
       - name: Convert Markdown to HTML
         run: |
@@ -50,12 +55,13 @@ jobs:
             echo "  <link rel=\"stylesheet\" href=\"/style.css\">" >> "../blog/$html_file"
             echo "</head>" >> "../blog/$html_file"
             echo "<body class=\"markdown-body\">" >> "../blog/$html_file"
+            echo "<div class=\"content-container\">" >> "../blog/$html_file"
             
-            # 使用pandoc转换Markdown到HTML
-            pandoc "$md_file" -o temp.html
-            cat temp.html >> "../blog/$html_file"
-            rm temp.html
+            # 使用markdown-it转换Markdown到HTML (更好的格式控制)
+            markdown-it "$md_file" >> "../blog/$html_file"
             
+            echo "</div>" >> "../blog/$html_file"
+            echo "<a href=\"/\" class=\"back-button\">返回首页</a>" >> "../blog/$html_file"
             echo "</body>" >> "../blog/$html_file"
             echo "</html>" >> "../blog/$html_file"
           done
@@ -63,19 +69,16 @@ jobs:
       
       - name: Generate blog-files.json from HTML files
         run: |
-          # 列出 blog 目录中的所有HTML文件并创建 JSON 数组
+          # 同之前的代码...
           cd blog
-          
-          # 获取所有HTML文件并保存到数组中
           files=($(find . -name "*.html" -type f -not -path "*/\.*" | sort))
           total_files=${#files[@]}
           
           echo "[" > ../blog-files.json
           
           for (( i=0; i<$total_files; i++ )); do
-            file=${files[$i]#./}  # 删除开头的 ./
+            file=${files[$i]#./}
             if [ -n "$file" ]; then
-              # 如果是最后一个文件，不添加逗号
               if [ $i -eq $((total_files-1)) ]; then
                 echo "  \"$file\"" >> ../blog-files.json
               else
@@ -85,8 +88,6 @@ jobs:
           done
           
           echo "]" >> ../blog-files.json
-          cd ..
-          cat blog-files.json  # 显示生成的文件内容
       
       - name: Commit and push changes
         run: |
