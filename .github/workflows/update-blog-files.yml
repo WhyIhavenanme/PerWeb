@@ -53,13 +53,33 @@ jobs:
             echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" >> "../blog/$html_file"
             echo "  <title>${rel_path%.md}</title>" >> "../blog/$html_file"
             echo "  <link rel=\"stylesheet\" href=\"/style.css\">" >> "../blog/$html_file"
+            echo "  <script type=\"importmap\">" >> "../blog/$html_file"
+            echo "    {" >> "../blog/$html_file"
+            echo "      \"imports\": {" >> "../blog/$html_file"
+            echo "        \"@material/web/\": \"https://esm.run/@material/web/\"" >> "../blog/$html_file"
+            echo "      } " >> "../blog/$html_file"
+            echo "    }" >> "../blog/$html_file"
+            echo "  </script>" >> "../blog/$html_file"
+            echo "  <script type=\"module\">" >> "../blog/$html_file"
+            echo "    import '@material/web/all.js';" >> "../blog/$html_file"
+            echo "    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';" >> "../blog/$html_file"
+            echo "    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);" >> "../blog/$html_file"
+            echo "  </script>" >> "../blog/$html_file"
             echo "</head>" >> "../blog/$html_file"
             echo "<body>" >> "../blog/$html_file"
             
             # 使用markdown-it转换Markdown到HTML
             markdown-it "$md_file" >> "../blog/$html_file"
             
-            echo "<br><a href=\"/\">返回首页</a>" >> "../blog/$html_file"
+            # 添加Material Design 3 返回按钮
+            echo "<br>" >> "../blog/$html_file"
+            echo "<div style=\"margin: 20px;\">" >> "../blog/$html_file"
+            echo "  <md-filled-tonal-button onclick=\"window.location.href='/'\">" >> "../blog/$html_file"
+            echo "    <md-icon slot=\"icon\">arrow_back</md-icon>" >> "../blog/$html_file"
+            echo "    返回首页" >> "../blog/$html_file"
+            echo "  </md-filled-tonal-button>" >> "../blog/$html_file"
+            echo "</div>" >> "../blog/$html_file"
+            
             echo "</body>" >> "../blog/$html_file"
             echo "</html>" >> "../blog/$html_file"
           done
