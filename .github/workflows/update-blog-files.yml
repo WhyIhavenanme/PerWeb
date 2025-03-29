@@ -54,14 +54,12 @@ jobs:
             echo "  <title>${rel_path%.md}</title>" >> "../blog/$html_file"
             echo "  <link rel=\"stylesheet\" href=\"/style.css\">" >> "../blog/$html_file"
             echo "</head>" >> "../blog/$html_file"
-            echo "<body class=\"markdown-body\">" >> "../blog/$html_file"
-            echo "<div class=\"content-container\">" >> "../blog/$html_file"
+            echo "<body>" >> "../blog/$html_file"
             
-            # 使用markdown-it转换Markdown到HTML (更好的格式控制)
+            # 使用markdown-it转换Markdown到HTML
             markdown-it "$md_file" >> "../blog/$html_file"
             
-            echo "</div>" >> "../blog/$html_file"
-            echo "<a href=\"/\" class=\"back-button\">返回首页</a>" >> "../blog/$html_file"
+            echo "<br><a href=\"/\">返回首页</a>" >> "../blog/$html_file"
             echo "</body>" >> "../blog/$html_file"
             echo "</html>" >> "../blog/$html_file"
           done
@@ -69,7 +67,6 @@ jobs:
       
       - name: Generate blog-files.json from HTML files
         run: |
-          # 同之前的代码...
           cd blog
           files=($(find . -name "*.html" -type f -not -path "*/\.*" | sort))
           total_files=${#files[@]}
@@ -88,6 +85,7 @@ jobs:
           done
           
           echo "]" >> ../blog-files.json
+          cd ..
       
       - name: Commit and push changes
         run: |
