@@ -74,10 +74,7 @@ jobs:
             # 添加Material Design 3 返回按钮
             echo "<br>" >> "../blog/$html_file"
             echo "<div style=\"margin: 20px;\">" >> "../blog/$html_file"
-            echo "  <md-filled-tonal-button onclick=\"window.location.href='/'\">" >> "../blog/$html_file"
-            echo "    <md-icon slot=\"icon\">arrow_back</md-icon>" >> "../blog/$html_file"
-            echo "    返回首页" >> "../blog/$html_file"
-            echo "  </md-filled-tonal-button>" >> "../blog/$html_file"
+            echo "  <md-filled-tonal-button onclick=\"window.location.href='/'\">返回首页</md-filled-tonal-button>" >> "../blog/$html_file"
             echo "</div>" >> "../blog/$html_file"
             
             echo "</body>" >> "../blog/$html_file"
