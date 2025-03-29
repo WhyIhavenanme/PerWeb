@@ -31,10 +31,6 @@
         text-align: center;
     }
     /* 打字效果容器样式 */
-    .typing {
-        text-align: center; /* 文本居中对齐 */
-    }
-    /* 小标题样式 */
     .typing-tittle-small {
         font-family: 'Playwrite AU SA Light', monospace;
         font-size: 1.75em; /* 设置小标题字体大小 */
