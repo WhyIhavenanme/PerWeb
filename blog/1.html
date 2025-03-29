@@ -5,13 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1</title>
   <link rel="stylesheet" href="/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      } 
+    }
+  </script>
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
 </head>
-<body class="markdown-body">
-<div class="content-container">
+<body>
 <h1>Hello World!</h1>
 <hr>
 <p>hxt我爱你！</p>
+<br>
+<div style="margin: 20px;">
+  <md-filled-tonal-button onclick="window.location.href='/'">
+    <md-icon slot="icon">arrow_back</md-icon>
+    返回首页
+  </md-filled-tonal-button>
 </div>
-<a href="/" class="back-button">返回首页</a>
 </body>
 </html>
