@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 listItem.addEventListener('click', (event) => {
                     event.preventDefault();
                     // 直接跳转到对应的HTML文件
-                    window.open(`/blog-html/${file}`, '_blank');
+                    window.open(`/blog/${file}`, '_blank');
                 });
             });
         })

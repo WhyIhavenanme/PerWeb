@@ -3,7 +3,7 @@ name: Update Blog Files and Convert to HTML
 on:
   push:
     paths:
-      - 'blog/**'  # 当 blog 目录有变化时触发
+      - 'blog_original/**'  # 当 blog_original 目录有变化时触发
   workflow_dispatch:  # 允许手动触发
   schedule:
     - cron: '0 0 * * *'  # 每天 UTC 时间 00:00 运行一次
@@ -20,51 +20,51 @@ jobs:
       
       - name: Convert Markdown to HTML
         run: |
-          # 创建blog-html目录（如果不存在）
-          mkdir -p blog-html
+          # 创建blog目录（如果不存在）
+          mkdir -p blog
           
-          # 清空现有的blog-html目录
-          rm -rf blog-html/*
+          # 清空现有的blog目录
+          rm -rf blog/*
           
-          # 遍历blog目录中的所有Markdown文件并转换为HTML
-          cd blog
+          # 遍历blog_original目录中的所有Markdown文件并转换为HTML
+          cd blog_original
           md_files=($(find . -name "*.md" -type f -not -path "*/\.*" | sort))
           
           for md_file in "${md_files[@]}"; do
             # 获取相对路径
             rel_path=${md_file#./}
             # 创建目标目录
-            target_dir="../blog-html/$(dirname "$rel_path")"
+            target_dir="../blog/$(dirname "$rel_path")"
             mkdir -p "$target_dir"
             # 转换文件名（.md 替换为 .html）
             html_file="${rel_path%.md}.html"
             echo "Converting $rel_path to $html_file"
             
             # 添加基本HTML头部和样式
-            echo "<!DOCTYPE html>" > "../blog-html/$html_file"
-            echo "<html lang=\"en\">" >> "../blog-html/$html_file"
-            echo "<head>" >> "../blog-html/$html_file"
-            echo "  <meta charset=\"UTF-8\">" >> "../blog-html/$html_file"
-            echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" >> "../blog-html/$html_file"
-            echo "  <title>${rel_path%.md}</title>" >> "../blog-html/$html_file"
-            echo "  <link rel=\"stylesheet\" href=\"/style.css\">" >> "../blog-html/$html_file"
-            echo "</head>" >> "../blog-html/$html_file"
-            echo "<body class=\"markdown-body\">" >> "../blog-html/$html_file"
+            echo "<!DOCTYPE html>" > "../blog/$html_file"
+            echo "<html lang=\"en\">" >> "../blog/$html_file"
+            echo "<head>" >> "../blog/$html_file"
+            echo "  <meta charset=\"UTF-8\">" >> "../blog/$html_file"
+            echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" >> "../blog/$html_file"
+            echo "  <title>${rel_path%.md}</title>" >> "../blog/$html_file"
+            echo "  <link rel=\"stylesheet\" href=\"/style.css\">" >> "../blog/$html_file"
+            echo "</head>" >> "../blog/$html_file"
+            echo "<body class=\"markdown-body\">" >> "../blog/$html_file"
             
             # 使用pandoc转换Markdown到HTML
             pandoc "$md_file" -o temp.html
-            cat temp.html >> "../blog-html/$html_file"
+            cat temp.html >> "../blog/$html_file"
             rm temp.html
             
-            echo "</body>" >> "../blog-html/$html_file"
-            echo "</html>" >> "../blog-html/$html_file"
+            echo "</body>" >> "../blog/$html_file"
+            echo "</html>" >> "../blog/$html_file"
           done
           cd ..
       
       - name: Generate blog-files.json from HTML files
         run: |
-          # 列出 blog-html 目录中的所有HTML文件并创建 JSON 数组
-          cd blog-html
+          # 列出 blog 目录中的所有HTML文件并创建 JSON 数组
+          cd blog
           
           # 获取所有HTML文件并保存到数组中
           files=($(find . -name "*.html" -type f -not -path "*/\.*" | sort))
@@ -92,5 +92,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add blog-files.json blog-html/
+          git add blog-files.json blog/
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update blog-files.json and generate HTML files" && git push)
